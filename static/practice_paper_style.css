@@ -1,0 +1,75 @@
+body {
+    font-family: "Chalkboard SE", cursive;  
+    margin: 0;
+}
+
+.navigation-bar {
+    height: 50px;
+    display: flex;
+    background-color:lightcoral; 
+    width: 100%;
+    padding-top: 30px;
+    gap: 200px;
+}
+
+.logo{
+    display: flex;
+    gap: 30px;
+    padding-left: 150px;
+    padding-right: 200px;
+
+}
+
+.logo img {
+    object-fit: cover;
+    position: relative;
+    top: -15px;
+}
+
+a {
+    text-decoration: none; 
+    color: black; 
+}
+
+a:hover {
+    text-decoration: underline; 
+} 
+
+.question {
+    text-align: center;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.question-number {
+    font-size: 35px;
+}
+
+.question-text {
+    font-size: 20px;
+    white-space: pre-line; 
+    gap: 10px;
+}
+
+.input-box {
+    margin: auto 700px;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.next-button {
+    background-color: aquamarine; 
+    padding: 10px 20px;
+    margin: auto 700px;
+    border-radius: 10px;
+    transition: transform 0.3s ease; 
+    margin-top: 100px;
+}
+
+.next-button:hover {
+    transform: scale(1.1);
+    text-decoration: none; 
+}
