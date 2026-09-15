@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head> 
+    <meta charset="UTF-8">
+    <title>Kuromi Maths game</title>
+
+    <link rel="stylesheet" href="/static/style.css?v=2">
+
+</head>
+<body>
+    <div class="navigation-bar">
+        <div class="logo">
+            <img src="/static/app-logo.jpg" width="50" height="50">
+            <span>Kuromi x BadtzMaru</span>
+        </div>
+        <a href="/">Home</a>
+        <a href="/p-papers">Practise Paper</a>
+        <a href="/progress">Progress</a>
+    </div>
+    <main> 
+        {% if let Some(question) = question %}
+        {% if let Some(question_number) = question_number %}
+        {% if let Some(current_index) = current_index %}
+        {% if let Some(choices) = question.choices %}
+        {% if let Some(topic) = topic %}
+        {% if let Some(subtopic) = subtopic %}
+            <h1 class="question-number">Question {{question_number}} of {{total_questions}}</h1>
+            <p class="question-text">{{question.text}}</p>
+            <form action="/answer/{{ topic }}/{{ subtopic }}/{{ current_index }}" method="post" class="question-options">
+                <div class="option-row">
+                    <button name="answer" value="A">
+                        <span class="choice-letter">A</span>
+                        <span class="choice-text">{{ choices[0] }}</span>
+                    </button>
+                </div>
+                <div class="option-row">
+                    <button name="answer" value="B">
+                        <span class="choice-letter">B</span>
+                        <span class="choice-text">{{ choices[1] }}</span>
+                    </button>              
+                </div>
+                <div class="option-row">
+                    <button name="answer" value="C">
+                        <span class="choice-letter">C</span>
+                        <span class="choice-text">{{ choices[2] }}</span>
+                    </button>
+                </div>
+                <div class="option-row">
+                    <button name="answer" value="D">
+                        <span class="choice-letter">D</span>
+                        <span class="choice-text">{{ choices[3] }}</span>
+                    </button>
+                </div>
+            </form>
+            {% if let Some(message) = feedback %}
+                <div class="feedback">
+                    {% if let Some(correct_answer) = correct %} 
+                        {% if correct_answer %}
+                            <p class="correct">{{ message }}</p>
+                        {% else %} 
+                            <p class="incorrect">{{ message }}</p>
+                        {% endif %}
+                    {% endif %}
+
+                    <p>{{ question.explanation }}</p>
+
+                    {% if current_index + 1 < total_questions %}
+                        <form action="/quiz/{{ topic }}/{{ subtopic }}/{{ current_index + 1 }}" method="get">
+                            <button type="submit" class="next-button">Next</button>
+                        </form>
+                    {% else if current_index + 1 == total_questions %}
+                        <form action="/results/{{ topic }}/{{ subtopic }}" method="get">
+                            <button type="submit" class="finish-quiz">Finish</button>
+                        </form>
+                    {% endif %} 
+                </div>
+            {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% if show_results %}
+            <div class="confetti-container">
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎊</span>
+                <span>⭐</span>
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎊</span>
+                <span>⭐</span>
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎊</span>
+                <span>⭐</span>
+                <span>🎉</span>
+                <span>✨</span>
+            </div>
+            <h1 class="results-title">🎉🥳 Congratulations on completing the quiz! 🎉🥳</h1>
+            <div class="results">
+                {% if let Some(num_correct) = num_correct %}
+                    <p>Number of correct answers: {{ num_correct }} / {{ total_questions }}</p>
+                {% endif %}
+
+                {% if let Some(points) = points %}
+                    <p>Points: {{ points }}</p>
+                {% endif %}
+
+                {% if let Some(percentage) = percentage %} 
+                    <p>Percentage of correct answers: {{ percentage }}%</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>
