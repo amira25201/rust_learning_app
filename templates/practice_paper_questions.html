@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head> 
+    <meta charset="UTF-8">
+    <title>Kuromi Maths game</title>
+
+    <link rel="stylesheet" href="/static/practice_paper_style.css?v=3"> 
+
+</head> 
+<body>
+    <div class="navigation-bar">
+        <div class="logo">
+            <img src="/static/app-logo.jpg" width="50" height="50">
+            <span>Kuromi x BadtzMaru</span>    
+        </div>
+        <a href="/">Home</a>
+        <a href="/p-papers">Practise Paper</a>
+        <a href="/progress">Progress</a>
+    </div>
+</body>
+<main> 
+    <div class="question">
+        {% if let Some(question) = question %}
+        {% if let Some(question_number) = question_number %}
+        {% if let Some(paper) = paper %}
+            <h1 class="question-number">Question {{ question_number }}/{{ total_questions }}</h1>
+            <p class="question-text"> {{ question.text }}</p>
+            <input type="text" name="answer" class="input-box">
+            {% if current_index + 1 < total_questions %}
+                <a href="/p-papers/{{ paper }}/{{ current_index +1 }}" class="next-button">Next</a>
+            {% else if current_index == total_questions %}
+                <a href="#" class="finish-button">Finish</a>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endif %}
+    </div>
+</main>
