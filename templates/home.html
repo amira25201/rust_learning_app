@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head> 
+    <meta charset="UTF-8">
+    <title>Kuromi Maths game</title>
+
+    <link rel="stylesheet" href="/static/style.css?v=2">
+
+</head>
+<body>
+    <div class="navigation-bar">
+        <div class="logo">
+            <img src="/static/app-logo.jpg" width="50" height="50">
+            <span>Kuromi x BadtzMaru</span>
+        </div>
+        <a href="/">Home</a>
+        <a href="/p-papers">Practise Paper</a>
+        <a href="/progress">Progress</a>
+    </div>
+    <main> 
+        {% if selected_topic.is_none() %}
+            <h1 class="homepage-title">Let's start practising!</h1>
+            <div class="topics-bank">
+                <div class="topics-row1">
+                    <a href="/topics/numbers" class="topic1">Number and Place Value</a>
+                    <a href="/topics/calculations" class="topic2">Calculations</a>
+                    <a href="/topics/fractions-decimals-percentages" class="topic3">Fractions, Decimals and Percentages</a>
+                </div>
+                <div class="topics-row2">
+                    <a href="/topics/measurement" class="topic4">Measurement</a>
+                    <a href="/topics/geometry" class="topic5">Geometry</a>
+                    <a href="/topics/statistics" class="topic6">Statistics</a>
+                </div>
+            </div>
+        {% else if selected_topic.as_deref() == Some("numbers") %} 
+            <div class="topic">
+                <a href="/topics/numbers" class="topic-title">Numbers and Place Value</a> 
+                <div class="subtopic-list">
+                    <a href="#" class="subtopic">1. Counting Backwards Through Zero</a>
+                    <a href="#" class="subtopic">2. Place Value in Big Numbers</a>
+                    <a href="#" class="subtopic">3. Ordering and Comparing Big Numbers</a>
+                    <a href="#" class="subtopic">4. Counting in Powers of 10</a>
+                    <a href="#" class="subtopic">5. Rounding</a>
+                    <a href="#" class="subtopic">6. Roman Numerals</a>
+                </div>
+            </div>
+        {% else if selected_topic.as_deref() == Some("calculations") %}
+            <div class="topic">
+                <a href="/topics/calculations" class="topic-title">Calculations</a>
+                <div class="subtopic-list">
+                    <a href="/quiz/calculations/written-add-sub/0" class="subtopic">1. Written Adding and Subtracting</a>
+                    <a href="#" class="subtopic">2. Mental Adding and Subtracting</a>
+                    <a href="#" class="subtopic">3. Rounding and Checking</a>
+                    <a href="#" class="subtopic">4. Square and Cube Numbers</a>
+                    <a href="#" class="subtopic">5. Multiples</a>
+                    <a href="#" class="subtopic">6. Factors and Primes</a>
+                    <a href="#" class="subtopic">7. Multiplying and Dividing by 10, 100 and 1000</a>
+                    <a href="#" class="subtopic">8. Mental Multiplying and Dividing</a>
+                    <a href="#" class="subtopic">9. Written Multiplication</a>
+                    <a href="#" class="subtopic">10. Written Division</a>
+                    <a href="#" class="subtopic">11. Solving Calculation Problems</a>
+                </div>
+            </div>
+        {% endif %}
+    </main>
